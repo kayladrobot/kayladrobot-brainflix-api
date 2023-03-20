@@ -9,14 +9,14 @@ async function fetchVideos() {
     const videoList = response.data;
 
     //empty object to store video data
-    let allVideos = {};
+    let allVideos = [];
 
     //fetch data for each video
     for (let i = 0; i < videoList.length; i++) {
         const videoId = videoList[i].id;
         const videoResponse = await axios.get(`${URL}videos/${videoId}${API_KEY}`);
         const videoData = videoResponse.data;
-        allVideos[videoId] = videoData;
+        allVideos.push(videoData)
     }
 
     fs.writeFileSync('videos.json', JSON.stringify(allVideos));
