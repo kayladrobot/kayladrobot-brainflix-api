@@ -5,16 +5,20 @@ const videoRoutes = require("./routes/videoRoutes")
 
 // Middleware
 app.use(express.json());
+app.use(express.static('public'));
 
 app.use((req, res, next) => {
+    console.log(`${req.method} Request Received`);
+    next();
+  });
+
+app.use("/videos", (req, res, next) => {
     if (req.method === 'POST' && req.headers['content-type'] !== 'application/json') {
         res.status(400).send('Server require application/json');
     } else {
         next();
     }
 })
-
-app.use(express.static('public'))
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

@@ -49,8 +49,14 @@ router.post('/', (req, res) => {
       const newVideo = {
         id: uniqid(),
         title: req.body.title,
-        channel: req.body.channel,
-        image: 'path/to/image'
+        channel: req.body.channel, // use req.body.channel instead of req.body.description
+        image: "http://localhost:8080" + "/images/photo-1481349518771-20055b2a7b24.jpeg",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet mollis lectus, vitae pretium sapien hendrerit vel. Maecenas eget urna nunc. Sed vel blandit elit, eu congue sapien. Sed ac est a purus sagittis viverra. Vestibulum at justo in turpis interdum tristique.",
+        likes: 1005,
+        views: 64,
+        comments: [],
+        timestamp: 1632496261000,
+        duration: "1:64"
       };
       videos.push(newVideo);
       fs.writeFile('./data/videos.json', JSON.stringify(videos), (err) => {
