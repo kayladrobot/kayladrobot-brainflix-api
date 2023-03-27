@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
         id: uniqid(),
         title: req.body.title,
         channel: req.body.channel, // use req.body.channel instead of req.body.description
-        image: "http://localhost:8080" + "/images/photo-1481349518771-20055b2a7b24.jpeg",
+        image: "http://localhost:8080" + "/images/Upload-video-preview.jpg",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet mollis lectus, vitae pretium sapien hendrerit vel. Maecenas eget urna nunc. Sed vel blandit elit, eu congue sapien. Sed ac est a purus sagittis viverra. Vestibulum at justo in turpis interdum tristique.",
         likes: 1005,
         views: 64,
