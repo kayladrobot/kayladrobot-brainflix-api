@@ -71,5 +71,39 @@ router.post('/', (req, res) => {
   });
 });
 
+router.post('/:id/comments', (req, res) => {
+  fs.readFile('./data/videos.json', (err, data) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      const videos = JSON.parse(data);
+      const videoId = req.params.id;
+      const video = videos.find(v => v.id === videoId);
+      if (!video) {
+        res.status(404).send('Video not found');
+      } else {
+        const newComment = {
+          id: uniqid(),
+          name: "Guest",
+          comment: req.body.comment,
+          likes: 0,
+          timestamp: Date.now()
+        };
+        video.comments.push(newComment);
+        fs.writeFile('./data/videos.json', JSON.stringify(videos), (err) => {
+          if (err) {
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+          } else {
+            res.status(201).send(newComment);
+          }
+        });
+      }
+    }
+  });
+});
+
+
 
 module.exports = router;

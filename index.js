@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 const PORT = 8080;
 const videoRoutes = require("./routes/videoRoutes")
+
+app.use(cors());
 
 // Middleware
 app.use(express.json());
